@@ -1,8 +1,9 @@
 package Clases;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Mensaje {
+public class Mensaje implements Serializable{
 	private String status;
 	private int totalResults;
 	private ArrayList<Noticia> articles;
