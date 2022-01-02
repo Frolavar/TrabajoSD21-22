@@ -24,7 +24,7 @@ public class ManejadorCliente implements Runnable{
 			DataOutputStream dos=new DataOutputStream(cliente.getOutputStream());
 		){
 			String busqueda=dis.readLine();
-			String url="https://newsapi.org/v2/everything?q="+ busqueda +"&sortBy=publishedAt&apiKey=8410a71068704edb88f7fd215ab64f08";
+			String url="https://newsapi.org/v2/everything?q="+ busqueda +"&sortBy=popularity&apiKey=8410a71068704edb88f7fd215ab64f08";
 			URL u = new URL(url);
 			HttpURLConnection con = (HttpURLConnection) u.openConnection();
 			con.setRequestMethod("GET");
