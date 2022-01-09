@@ -7,6 +7,7 @@ public class Mensaje implements Serializable{
 	private String status;
 	private int totalResults;
 	private ArrayList<Noticia> articles;
+	
 	public Mensaje(String status, int totalResults, ArrayList<Noticia> articles) {
 		super();
 		this.status = status;

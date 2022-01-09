@@ -47,7 +47,11 @@ public class Cliente {
 					if(eleccion.equals("+")) {
 						elec=-1;
 					}else {
-						elec=Integer.parseInt(eleccion);
+						try {
+							elec=Integer.parseInt(eleccion);
+						}catch(NumberFormatException ex) {
+							elec=0;
+						}
 					}
 					while(elec!=0) {
 						if(elec<-1 || elec>fin+1) {
@@ -74,7 +78,11 @@ public class Cliente {
 						if(eleccion.equals("+")) {
 							elec=-1;
 						}else {
-							elec=Integer.parseInt(eleccion);
+							try {
+								elec=Integer.parseInt(eleccion);
+							}catch(NumberFormatException ex) {
+								elec=0;
+							}
 						}
 					}
 					
@@ -84,7 +92,7 @@ public class Cliente {
 				//Preguntamos al cliente si desea buscar otro topic
 				System.out.println("--> ¿Quieres seguir buscando otro topic? SI/NO");
 				String seguir=bf.readLine();
-				while(!seguir.equalsIgnoreCase("SI")||!seguir.equalsIgnoreCase("NO")) {
+				while(!seguir.equalsIgnoreCase("SI")&&!seguir.equalsIgnoreCase("NO")) {
 					System.out.println("--> Introduce SI o NO");
 					seguir=bf.readLine();
 				}
@@ -97,6 +105,7 @@ public class Cliente {
 		}
 	}
 	
+	//Se conecta con el servidor para pasarle el parámetro de búsqueda y recibir el json con las noticias encontradas
 	public static String realizarPeticion(String busqueda) {
 		String mensaje=null;
 		try (Socket s=new Socket("localhost",9999);
@@ -114,6 +123,7 @@ public class Cliente {
 		}
 	}
 	
+	//Muestra por pantalla el menú con las noticias recibidas como parámetro desde la posicion inicio hasta fin
 	public static void MenuBusquedas(int inicio, int fin, List<Noticia> noticias) {
 		for(int i=inicio;i<=fin;i++) {
 			Noticia n=noticias.get(i);
@@ -130,6 +140,7 @@ public class Cliente {
 		}
 	}
 	
+	//Abre en el buscador la noticia recibida como parámetro
 	public static void BuscarNoticia(Noticia n) {
 		try {
 			Desktop.getDesktop().browse(new URI(n.getUrl()));
